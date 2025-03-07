@@ -2,7 +2,10 @@
 
 .delivery-form{
     background-color: rgb(203, 187, 187);
-    padding-bottom: 30px;
+    padding: 30px 0;
+}
+h1{
+    text-align: center;
 }
 
 .item{
@@ -10,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 20px;
 }
 
 button{
@@ -22,11 +26,14 @@ button{
 }
 
 .number{
-    padding: 0 15px
+    padding: 0 15px;
+    font-size:20px;
 }
 
 
-            /* form */
+/* =============================
+            form 
+    =============================*/
 form{
     margin-top: 30px;
     text-align: center;
@@ -63,6 +70,8 @@ input{
     cursor: pointer;
     opacity: 0.8;
 }
+
+
 
 .history-link{
     display: flex;
