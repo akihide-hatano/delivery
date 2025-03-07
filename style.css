@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+.delivery-form{
+    background-color: rgb(203, 187, 187);
+    padding-bottom: 30px;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    color: bisque;
+    background-color: rgb(28, 27, 27);
+}
+
+.number{
+    padding: 0 15px
+}
+
+
+            /* form */
+form{
+    margin-top: 30px;
+    text-align: center;
+}
+
+label{
+    display: block;
+}
+
+input{
+    width: 200px;
+    padding: 5px;
+}
+
+.name,
+.telephone{
+    padding-bottom: 15px;
+}
+
+#buttonSubmit{
+    display: block;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 15px;
+    color: bisque;
+    background-color: brown;
+    margin: 0 auto;
+    border: 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 影を追加 */
+}
+
+#buttonSubmit:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.history-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 15px;
+}
+
+a{
+    text-decoration: none;
+}
+
