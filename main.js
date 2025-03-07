@@ -82,7 +82,18 @@ const db = getFirestore(app); // app は initializeApp() で初期化したも�
     console.error("Error getting documents:", error);
   });
 
+// submitButton のクリックイベントリスナー
+const submitButton = document.getElementById('buttonSubmit');
+submitButton.addEventListener('click', () => {
+  // 氏名と電話番号の入力値を取得
+  const name = document.querySelector('input[type="text"]').value;
+  const telephone = document.querySelector('input[type="tel"]').value;
 
+  // 各商品の数量を取得
+  const ramenQuantity = document.getElementById('ramen').querySelector('.number').textContent;
+  const eggMenQuantity = document.getElementById('egg-men').querySelector('.number').textContent;
+  const tyashuMenQuantity = document.getElementById('tyashu-men').querySelector('.number').textContent;
+});
 
 
 const items = document.querySelectorAll('.item');
