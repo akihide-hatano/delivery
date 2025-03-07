@@ -1,13 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./sanitize.css">
     <link rel="stylesheet" href="./style.css">
-    <title>出前サイトです</title>
-</head>
-<body>
-    <script src="./main.js"></script>
-</body>
+    <title>出前ファイルです</title>
+  </head>
+  <body>
+    <section class="delivery-form">
+      <div class="item" id="ra-men">
+          <img src="" alt="">
+          <h2 class="itemName">ラーメン</h2>
+          <p class="itemPrice">値段600円</p>
+          <div class="quantity-control">
+            <button class="decrement">-</button>
+            <span class="number">0</span>
+            <button class="increment">+</button>
+          </div>
+      </div>
+
+      <div class="item" id="tyashu-men">
+        <img src="" alt="">
+        <h2 class="itemName">チャーシューメン</h2>
+        <p class="itemPrice">値段800円</p>
+          <div class="quantity-control">
+            <button class="decrement">-</button>
+            <span class="number">0</span>
+            <button class="increment">+</button>
+          </div>
+      </div>
+
+      <div class="item" id="eggra-men">
+        <img src="" alt="">
+        <h2 class="itemName">玉子ラーメン</h2>
+        <p class="itemPrice">値段800円</p>
+          <div class="quantity-control">
+            <button class="decrement">-</button>
+            <span class="number">0</span>
+            <button class="increment">+</button>
+          </div>
+      </div>
+
+      <form action="">
+        <div class="name">
+          <label for="">氏名</label>
+          <input type="text" placeholder="山田太郎">
+        </div>
+
+        <div class="telephone">
+          <label for="">電話番号</label>
+          <input type="tel" id="" name="" placeholder="03-111-1111">
+        </div>
+      </form>
+      <div class="form-button">
+        <button type="submit" id="buttonSubmit">出前します</button>
+      </div>
+      <div class="history-link">
+          <a href="./">Home</a>
+          <a href="./history.html">購入履歴</a>
+      </div>
+
+    </section>
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>
