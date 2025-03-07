@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,51 +15,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app); // app は initializeApp() で初期化したもの
-const db = getFirestore(app); // app は initializeApp() で初期化したもの
+const storage = getStorage(app);
+const db = getFirestore(app);
 
-    // // ラーメン画像 URL の取得と表示
-    // const imageRefRamen = ref(storage, 'ramen1.jpg');
-  
-    // getDownloadURL(imageRefRamen)
-    //   .then((url) => {
-    //     const imgElement = document.getElementById('ramen-image');
-    //     imgElement.src = url;
-        
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error getting download URL:", error);
-    //   });
-  
-    // // 玉子ラーメン画像 URL の取得と表示
-    // const imageRefEgg = ref(storage, 'ramen2.png');
-  
-    // getDownloadURL(imageRefEgg)
-    //   .then((url) => {
-    //     const imgElement = document.getElementById('egg-men-img');
-    //     imgElement.src = url;
-        
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error getting download URL:", error);
-    //   });
-
-    // // チャーシューラーメン画像 URL の取得と表示
-    // const imageRefTyashu = ref(storage, 'ramen3.png');
-  
-    // getDownloadURL(imageRefTyashu)
-    //   .then((url) => {
-    //     const imgElement = document.getElementById('tyashu-men-img');
-    //     imgElement.src = url;
-        
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error getting download URL:", error);
-    //   });
-
-
-      // 商品情報の取得
-  getDocs(collection(db, 'items'))
+// 商品情報の取得
+getDocs(collection(db, 'items'))
   .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       const itemData = doc.data();
@@ -82,9 +40,11 @@ const db = getFirestore(app); // app は initializeApp() で初期化したも�
     console.error("Error getting documents:", error);
   });
 
+
+
 // submitButton のクリックイベントリスナー
 const submitButton = document.getElementById('buttonSubmit');
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', async () => {
   // 氏名と電話番号の入力値を取得
   const name = document.querySelector('input[type="text"]').value;
   const telephone = document.querySelector('input[type="tel"]').value;
@@ -93,28 +53,64 @@ submitButton.addEventListener('click', () => {
   const ramenQuantity = document.getElementById('ramen').querySelector('.number').textContent;
   const eggMenQuantity = document.getElementById('egg-men').querySelector('.number').textContent;
   const tyashuMenQuantity = document.getElementById('tyashu-men').querySelector('.number').textContent;
+
+  try {
+    // 顧客情報を Firestore に保存
+    const customerRef = await addDoc(collection(db, "customers"), {
+      name: name,
+      telephone: telephone,
+    });
+    const customerId = customerRef.id;
+
+    // 注文情報を Firestore に保存
+    await addDoc(collection(db, "orders"), {
+      customerId: customerId,
+      orderDate: new Date(),
+      items: [
+        { name: 'ラーメン', quantity: ramenQuantity },
+        { name: '玉子ラーメン', quantity: eggMenQuantity },
+        { name: 'チャーシューメン', quantity: tyashuMenQuantity }
+      ],
+      totalPrice: calculateTotalPrice([
+        { name: 'ラーメン', quantity: ramenQuantity, price: 600 },
+        { name: '玉子ラーメン', quantity: eggMenQuantity, price: 800 },
+        { name: 'チャーシューメン', quantity: tyashuMenQuantity, price: 800 }
+      ])
+    });
+    console.log("注文情報を送信しました");
+  } catch (error) {
+    console.error("注文情報の送信に失敗しました:", error);
+  }
 });
 
+// 合計金額を計算する関数
+const calculateTotalPrice = (items) => {
+  let totalPrice = 0;
+  items.forEach(item => {
+    totalPrice += item.quantity * item.price;
+  });
+  return totalPrice;
+};
 
+// 数量調整
 const items = document.querySelectorAll('.item');
 
-items.forEach(item=>{
-    const decrementButton = item.querySelector('.decrement');
-    const numberSpan = item.querySelector('.number');
-    const incrementButton = item.querySelector('.increment');
+items.forEach(item => {
+  const decrementButton = item.querySelector('.decrement');
+  const numberSpan = item.querySelector('.number');
+  const incrementButton = item.querySelector('.increment');
 
-    let number = 0;
+  let number = 0;
 
-    decrementButton.addEventListener('click',()=>{
-        if(number>0){
-            number --;
-            numberSpan.textContent = number;
-        }
-    });
+  decrementButton.addEventListener('click', () => {
+    if (number > 0) {
+      number--;
+      numberSpan.textContent = number;
+    }
+  });
 
-    incrementButton.addEventListener('click',()=>{
-            number ++;
-            numberSpan.textContent = number;
-
-    });
+  incrementButton.addEventListener('click', () => {
+    number++;
+    numberSpan.textContent = number;
+  });
 });
