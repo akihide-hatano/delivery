@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./sanitize.css">
     <link rel="stylesheet" href="./order.css">
-    <title>Document</title>
+    <title>注文履歴</title>
 </head>
 <body>
-    <h1>注文確認</h1>
-    <p>氏名: <span id="order-name"></span></p>
-    <p>電話番号: <span id="order-telephone"></span></p>
-    <h2>注文内容</h2>
-    <ul id="order-items"></ul>
+    <h1 class="title">注文確認</h1>
+    <table id="order-table">
+        <thead>
+            <tr>
+                <th>氏名</th>
+                <th>電話番号</th>
+                <th>注文日時</th>
+                <th>商品名</th>
+                <th>数量</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <a href="./index.html"><button class="">登録画面に戻る</button></a>
+    <script type="module" src="./order.js"></script>
+
 </body>
 </html>

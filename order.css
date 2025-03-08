@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+.title{
+    text-align: center;
+    color: rgb(150, 154, 157);
+}
+
+#order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#order-table th,
+#order-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#order-table th {
+    background-color: #f2f2f2;
+    width:15%
+}
+
+#order-table td:nth-child(4){
+    width: 40%;
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+    display: block;
+    font-size: 20px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5%;
+    margin: 30px auto 30px;
+    background-color: rgb(163, 88, 103);
+    color: #ddd;
+    box-shadow: 5px 5px 10px rgb(28, 28, 28); /* 影を追加 */
+}
