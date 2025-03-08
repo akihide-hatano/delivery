@@ -45,7 +45,7 @@ getDocs(collection(db, 'items'))
 // submitButton のクリックイベントリスナー
 const submitButton = document.getElementById('buttonSubmit');
 submitButton.addEventListener('click', async () => {
-  // 氏名と電話番号の入力値を取得
+  // 氏名と電話番号の入力値を取得git 
   const name = document.querySelector('input[type="text"]').value;
   const telephone = document.querySelector('input[type="tel"]').value;
 
